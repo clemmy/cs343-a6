@@ -1,5 +1,6 @@
 #ifndef __WATCARDOFFICE_H__
 #define __WATCARDOFFICE_H__
+#include "Watcard.h"
 #include <uFuture.h>
 #include <vector>
 _Task WATCardOffice {
