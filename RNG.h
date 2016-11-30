@@ -4,4 +4,4 @@
 #include "MPRNG.h"
 extern MPRNG rng;
 
-#endif // RNG.h
+#endif // __RNG_H__

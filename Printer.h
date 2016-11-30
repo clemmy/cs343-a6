@@ -1,3 +1,6 @@
+#ifndef __PRINTER_H__
+#define __PRINTER_H__
+
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -28,3 +31,5 @@ _Monitor Printer {
     void print(Kind kind, unsigned int lid, char state, int value1);
     void print(Kind kind, unsigned int lid, char state, int value1, int value2);
 }
+
+#endif // __PRINTER_H__

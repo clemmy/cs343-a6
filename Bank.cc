@@ -1,4 +1,5 @@
 #include "Bank.h"
+
 Bank::Bank(unsigned int numStudents) {
   balances = new int[numStudents];
 
