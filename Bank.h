@@ -1,5 +1,5 @@
-#ifndef BANK_H
-#define BANK_H
+#ifndef __BANK_H__
+#define __BANK_H__
 
 _Monitor Bank {
     unsigned int* balances;
@@ -9,4 +9,4 @@ _Monitor Bank {
     void withdraw(unsigned int id, unsigned int amount);
 };
 
-#endif
+#endif // __BANK_H__

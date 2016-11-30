@@ -10,8 +10,8 @@ void Parent::main() {
     } _Else {
       yield(parentalDelay); // wait
 
-      unsigned int luckyStudent = mprng(numStudents - 1); // student to give money to
-      unsigned int amountToGive = mprng(1, 3); // amount of money to give
+      unsigned int luckyStudent = rng(numStudents - 1); // student to give money to
+      unsigned int amountToGive = rng(1, 3); // amount of money to give
 
       printer.print(Printer::Kind::Parent, 'D', (int)luckyStudent, (int)amountToGive);
       bank.deposit(luckyStudent, amountToGive);

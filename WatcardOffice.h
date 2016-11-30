@@ -1,5 +1,6 @@
 #ifndef __WATCARDOFFICE_H__
 #define __WATCARDOFFICE_H__
+
 #include "Watcard.h"
 #include <uFuture.h>
 #include <vector>
@@ -66,4 +67,5 @@ _Task WATCardOffice {
     WATCard::FWATCard transfer( unsigned int sid, unsigned int amount, WATCard *card );
     Job *requestWork();
 };
+
 #endif // __WATCARDOFFICE_H__

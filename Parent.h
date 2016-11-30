@@ -1,11 +1,9 @@
-#ifndef PARENT_H
-#define PARENT_H
+#ifndef __PARENT_H__
+#define __PARENT_H__
 
-#include "MPRNG.h"
+#include "RNG.h"
 #include "Printer.h"
 #include "Bank.h"
-
-extern MPRNG mprng;
 
 _Task Parent {
     Printer &prt;
@@ -18,4 +16,4 @@ _Task Parent {
     ~Parent();
 };
 
-#endif
+#endif // __PARENT_H__

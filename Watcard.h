@@ -1,5 +1,6 @@
 #ifndef __WATCARD_H__
 #define __WATCARD_H__
+
 #include <uFuture.h>
 
 class WATCard {
@@ -14,4 +15,5 @@ class WATCard {
     void withdraw( unsigned int amount );
     unsigned int getBalance();
 };
+
 #endif // __WATCARD_H__
