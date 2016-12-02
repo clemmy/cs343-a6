@@ -3,6 +3,9 @@
 
 #include "Printer.h"
 #include "NameServer.h"
+#include "Watcard.h"
+
+_Task NameServer;
 
 _Task VendingMachine {
   private:

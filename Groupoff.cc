@@ -1,3 +1,5 @@
+#include "Groupoff.h"
+
 using namespace std;
 
 Groupoff::Groupoff(Printer &prt, unsigned int numStudents, unsigned int sodaCost, unsigned int groupOffDelay) :
@@ -8,8 +10,8 @@ Groupoff::Groupoff(Printer &prt, unsigned int numStudents, unsigned int sodaCost
     unusedWatCards = new vector<WATCard::FWATCard *>();
     usedWatCards = new vector<WATCard::FWATCard *>();
 
-    for (int i=0; i<numStudents; ++i) {
-      unusedWatCards.push_back(new WATCard::FWATCard());
+    for (size_t i = 0; i < numStudents; ++i) {
+      unusedWatCards->push_back(new WATCard::FWATCard());
     }
   }
 
@@ -28,7 +30,7 @@ WATCard::FWATCard Groupoff::giftCard() {
 void Groupoff::main() {
   printer.print(Printer::Kind::Groupoff, 'S');
 
-  for (unsigned int i; i<numStudents) {
+  for (size_t i = 0; i<numStudents;) {
     _Accept(~Groupoff) {
       break;
     } _Accept(giftCard) {
@@ -48,11 +50,11 @@ void Groupoff::main() {
 }
 
 Groupoff::~Groupoff() {
-  for (int i=0; i<unusedWatCards.size(); ++i) {
-    delete unusedWatCards.at(i);
+  for (size_t i=0; i<unusedWatCards->size(); ++i) {
+    delete unusedWatCards->at(i);
   }
-  for (int i=0; i<usedWatCards.size(); ++i) {
-    delete usedWatCards.at(i);
+  for (size_t i=0; i<usedWatCards->size(); ++i) {
+    delete usedWatCards->at(i);
   }
   delete unusedWatCards;
   delete usedWatCards;

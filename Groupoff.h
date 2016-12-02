@@ -13,12 +13,13 @@ _Task Groupoff {
     unsigned int numStudents;
     unsigned int sodaCost;
     unsigned int groupOffDelay;
-    vector<WATCard::FWATCard> unusedWatCards;
-    vector<WATCard::FWATCard> usedWatCards;
+    vector<WATCard::FWATCard *> *unusedWatCards;
+    vector<WATCard::FWATCard *> *usedWatCards;
 
     void main();
   public:
     Groupoff(Printer &prt, unsigned int numStudents, unsigned int sodaCost, unsigned int groupOffDelay);
+    ~Groupoff();
     WATCard::FWATCard giftCard();
 };
 

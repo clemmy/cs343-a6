@@ -2,13 +2,16 @@
 #include "RNG.h"
 #include "VendingMachine.h"
 
-BottlingPlant::BottlingPlant() :
+BottlingPlant::BottlingPlant(Printer &prt, NameServer &nameServer, unsigned int numVendingMachines,
+                             unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour,
+                             unsigned int timeBetweenShipments) :
   printer(prt),
   nameserver(nameServer),
   nummachines(numVendingMachines),
   maxshipstock(maxShippedPerFlavour),
   maxstock(maxStockPerFlavour),
   shippingtime(timeBetweenShipments),
+  truck(nullptr),
   closed(false) {
   stock = new size_t[VendingMachine::Flavours::COUNT];
   for (size_t i = 0; i < VendingMachine::Flavours::COUNT; ++i) {
@@ -41,7 +44,7 @@ void BottlingPlant::getShipment(unsigned int cargo[]) {
 
 void BottlingPlant::main() {
   printer.print(Printer::Kind::BottlingPlant, 'S');
-  truck = new Truck(); 
+  truck = new Truck(printer, nameserver, *this, nummachines, maxstock); 
   
   for (;;) {
     //produce
@@ -60,6 +63,6 @@ void BottlingPlant::main() {
     } or _When(!closed) _Accept(getShipment); 
 
     //wait for truck to come pick up
-    Accept(getShipment);
+    _Accept(getShipment);
   }
 }

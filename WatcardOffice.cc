@@ -3,7 +3,7 @@
 WATCardOffice::WATCardOffice(Printer &prt, Bank &bank, unsigned int numCouriers)
   : printer(prt), bank(bank), numcourier(numCouriers) {
   joblist = queue<Job*>();
-  courierlist = new Courier[numcourier];
+  courierlist = new Courier*[numcourier];
 }
 
 WATCardOffice::~WATCardOffice() {
@@ -15,21 +15,21 @@ WATCardOffice::~WATCardOffice() {
 }
 
 WATCard::FWATCard WATCardOffice::create(unsigned int sid, unsigned int amount) {
-  Watcard *card = new WATCard();
+  WATCard *card = new WATCard();
   Job *job = new Job(sid, amount, card);
-  joblist.push_back(job);
+  joblist.push(job);
   printer.print(Printer::Kind::WATCardOffice, 'C', sid, amount);
   return job->result;
 }
 
-WATCard::FWATCard WATCard::transfer(unsigned int sid, unsigned int amount, WATCard *card) {
+WATCard::FWATCard WATCardOffice::transfer(unsigned int sid, unsigned int amount, WATCard *card) {
   Job *job = new Job(sid, amount, card);
-  joblist.push_back(job);
+  joblist.push(job);
   printer.print(Printer::Kind::WATCardOffice, 'T', sid, amount);
   return job->result;
 }
 
-Job * WATCard::requestWork() {
+WATCardOffice::Job * WATCardOffice::requestWork() {
   if (joblist.empty()) {
     return nullptr;
   }
@@ -38,6 +38,8 @@ Job * WATCard::requestWork() {
   return job;
 }
 
+void WATCardOffice::Stop() {}
+
 void WATCardOffice::main() {
   printer.print(Printer::Kind::WATCardOffice, 'S');
   // Initiating courier tasks and store them in the list
@@ -45,7 +47,7 @@ void WATCardOffice::main() {
     courierlist[index] = new Courier(bank, *this, printer, index);
   }
   for(;;) {
-    _Accept(stop) {
+    _Accept(Stop) {
       break;
     } or _Accept(create, transfer) {
     } or _When(joblist.size() > 0) _Accept(requestWork) {
@@ -55,7 +57,7 @@ void WATCardOffice::main() {
 
   // To wake up the couriers waiting for the joblist
   for (size_t index = 0; index < numcourier; index++) {
-    joblist.push_back(nullptr);
+    joblist.push(nullptr);
     _Accept(requestWork);
   }
 }

@@ -1,9 +1,9 @@
 #include "Student.h"
-#include "VendingMachine"
+#include "VendingMachine.h"
 #include "RNG.h"
 #include "Watcard.h"
 
-Student::Student(Printer &prt, NameServer &nameserver, WATCardOffice &cardoffice, Groupoff &groupoff,
+Student::Student(Printer &prt, NameServer &nameServer, WATCardOffice &cardOffice, Groupoff &groupoff,
   unsigned int id, unsigned int maxPurchases):
   printer(prt), 
   nameserver(nameServer),
@@ -17,7 +17,7 @@ Student::~Student() {
 }
 
 void Student::main() {
-  int numBottlesToPurchase = rng(1, maxpurchases);
+  size_t numBottlesToPurchase = rng(1, maxpurchase);
   VendingMachine::Flavours favouriteFlavour = (VendingMachine::Flavours)rng(3);
 
   printer.print(Printer::Kind::Student, 'S', (int)favouriteFlavour, numBottlesToPurchase);
@@ -36,7 +36,7 @@ void Student::main() {
 
           for (;;) {
             try {
-              yield(1, 10);
+              yield(rng(1, 10));
               machine->buy(favouriteFlavour, *physicalcard);
               printer.print(Printer::Kind::Student, 'B', physicalcard->getBalance());
             } catch (VendingMachine::Funds e) {
@@ -50,7 +50,7 @@ void Student::main() {
         } else if (giftcard.available()) {
           for (;;) {
             try {
-              yield(1, 10);
+              yield(rng(1, 10));
               machine->buy(favouriteFlavour, *giftcard());
               printer.print(Printer::Kind::Student, 'G', giftcard()->getBalance());
               giftcard.reset();

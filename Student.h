@@ -11,7 +11,7 @@ _Task Student {
     Printer &printer;
     NameServer &nameserver;
     WATCardOffice &office;
-    GroupOff &groupoff;
+    Groupoff &groupoff;
     size_t id;
     size_t maxpurchase;
     void main();

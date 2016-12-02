@@ -5,6 +5,8 @@
 #include "NameServer.h"
 #include "BottlingPlant.h"
 
+_Task BottlingPlant;
+
 _Task Truck {
   private:
     Printer &printer;
@@ -19,6 +21,7 @@ _Task Truck {
   public:
     Truck( Printer &prt, NameServer &nameServer, BottlingPlant &plant,
            unsigned int numVendingMachines, unsigned int maxStockPerFlavour );
+    ~Truck();
 };
 
 #endif // __TRUCK_H__

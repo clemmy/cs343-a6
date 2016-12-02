@@ -1,9 +1,8 @@
 #include "Bank.h"
 
 Bank::Bank(unsigned int numStudents) {
-  balances = new int[numStudents];
-
-  for (int i=0; i<numStudents; ++i) {
+  balances = new size_t[numStudents];
+  for (size_t i = 0; i < numStudents; ++i) {
     balances[i] = 0;
   }
 }

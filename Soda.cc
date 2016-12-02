@@ -11,9 +11,11 @@
 #include "Student.h"
 
 #include <iostream>
+#include <cstring>
 
 void uMain::main() {
-  char *configfile = "soda.config";
+//  char *configfile = "soda.config";
+  string configfile = "soda.config";
   size_t seed;
   switch (argc) {
     case 3:
@@ -25,14 +27,14 @@ void uMain::main() {
       break;
   }
   ConfigParms params;
-  processConfigFile(configfile, params);
+  processConfigFile(configfile.c_str(), params);
 
   cout << params.sodaCost << endl;
   cout << params.numCouriers << endl;
   cout << params.maxPurchases << endl;
 
-  VendingMachine *machinelist = new VendingMachine[params.numVendingMachines];
-  Student *studentlist = new Student[params.numStudents];
+  VendingMachine **machinelist = new VendingMachine*[params.numVendingMachines];
+  Student **studentlist = new Student*[params.numStudents];
 
   Printer printer(params.numStudents, params.numVendingMachines, params.numCouriers);
   Bank bank(params.numStudents);

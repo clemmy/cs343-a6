@@ -6,7 +6,7 @@
 #include "Bank.h"
 
 _Task Parent {
-    Printer &prt;
+    Printer &printer;
     Bank &bank;
     unsigned int numStudents;
     unsigned int parentalDelay;

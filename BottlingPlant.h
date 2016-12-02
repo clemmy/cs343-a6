@@ -3,6 +3,9 @@
 
 #include "Printer.h"
 #include "NameServer.h"
+#include "Truck.h"
+
+_Task Truck;
 
 _Task BottlingPlant {
   private:
@@ -13,7 +16,7 @@ _Task BottlingPlant {
     size_t maxstock;
     size_t shippingtime;
     size_t *stock;
-    Truck &truck;
+    Truck *truck;
     bool closed;
     void main();
   public:
@@ -21,6 +24,7 @@ _Task BottlingPlant {
     BottlingPlant( Printer &prt, NameServer &nameServer, unsigned int numVendingMachines,
                  unsigned int maxShippedPerFlavour, unsigned int maxStockPerFlavour,
                  unsigned int timeBetweenShipments );
+    ~BottlingPlant();
     void getShipment( unsigned int cargo[] );
 };
 

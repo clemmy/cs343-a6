@@ -1,9 +1,15 @@
 #ifndef __WATCARDOFFICE_H__
 #define __WATCARDOFFICE_H__
 
+#include "Printer.h"
 #include "Watcard.h"
+#include "Bank.h"
+#include "RNG.h"
 #include <uFuture.h>
-#include <vector>
+#include <queue>
+
+using namespace std;
+
 _Task WATCardOffice {
   private:
     struct Job {                              // marshalled arguments and return future
@@ -22,9 +28,9 @@ _Task WATCardOffice {
         Printer &printer;
         size_t courierid;
         void main() {
-          printer.print(Printer::Kind::Courier, )
+          printer.print(Printer::Kind::Courier, 'S');
           for (;;) {
-            Job *job = requestWork();
+            Job *job = office.requestWork();
             if (job == nullptr) {
               break;
             }
@@ -38,6 +44,7 @@ _Task WATCardOffice {
 
             // 1/6th chance that the card will be lost
             if (rng(5) == 0) {
+              printer.print(Printer::Kind::Courier, 'L');
               delete job->watcard;
               job->result.exception(new WATCardOffice::Lost);
             } else {
@@ -58,7 +65,7 @@ _Task WATCardOffice {
     Bank &bank;
     size_t numcourier;
     queue<Job*> joblist;
-    Courier *courierlist;
+    Courier **courierlist;
   public:
     _Event Lost {};                           // lost WATCard
     WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers );
@@ -66,6 +73,7 @@ _Task WATCardOffice {
     WATCard::FWATCard create( unsigned int sid, unsigned int amount );
     WATCard::FWATCard transfer( unsigned int sid, unsigned int amount, WATCard *card );
     Job *requestWork();
+    void Stop();
 };
 
 #endif // __WATCARDOFFICE_H__

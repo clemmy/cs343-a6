@@ -2,7 +2,7 @@
 
 VendingMachine::VendingMachine(Printer &prt, NameServer &nameserver, unsigned int id,
 															 unsigned int sodaCost, unsigned int maxStockPerFlavour)
-  : printer(ptr), nameserver(nameserver), restocking(false), buying(false), machineid(id), sodacost(sodaCost), maxstock(maxStockPerFlavour) {
+  : printer(prt), nameserver(nameserver), restocking(false), buying(false), machineid(id), sodacost(sodaCost), maxstock(maxStockPerFlavour) {
   stockstatus = new size_t[3];
 	for (size_t index = 0; index < 3; index++) {
 		stockstatus = 0;
@@ -11,7 +11,7 @@ VendingMachine::VendingMachine(Printer &prt, NameServer &nameserver, unsigned in
 
 VendingMachine::~VendingMachine() {
   delete[] stockstatus;
-  printer.print(Printer::Kind::VendingMachine, 'F');
+  printer.print(Printer::Kind::Vending, 'F');
 }
 
 void VendingMachine::buy(Flavours flavour, WATCard &card) {
@@ -27,18 +27,18 @@ void VendingMachine::buy(Flavours flavour, WATCard &card) {
     // Withdrawing soda cost from the Watcard
     card.withdraw(sodacost);
     stockstatus[flavourindex] -= 1;
-    printer.print(Printer::Kind::VendingMachine, 'B', flavourindex, numsoda - 1);
+    printer.print(Printer::Kind::Vending, 'B', flavourindex, numsoda - 1);
   }
 }
 
 unsigned int * VendingMachine::inventory() {
-  printer.print(Printer::Kind::VendingMachine, 'r');
+  printer.print(Printer::Kind::Vending, 'r');
   restocking = true;
-	return stockstatus;
+	return reinterpret_cast<unsigned int *>(stockstatus);
 }
 
 void VendingMachine::restocked() {
-  printer.print(Printer::Kind::VendingMachine, 'R');
+  printer.print(Printer::Kind::Vending, 'R');
   restocking = bool();
 }
 
@@ -53,9 +53,9 @@ unsigned int VendingMachine::getId() {
 void VendingMachine::Stop() {}
 
 void VendingMachine::main() {
-  printer.print(Printer::Kind::VendingMachine, 'S');
+  printer.print(Printer::Kind::Vending, 'S');
 	// Registering itself to the Name Server
-	nameserver.register(this);
+	nameserver.VMregister(this);
 
   for (;;) {
     _When(!restocking && !buying)  _Accept(Stop, inventory) {

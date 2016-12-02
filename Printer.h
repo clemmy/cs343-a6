@@ -30,6 +30,8 @@ _Monitor Printer {
     void print(Kind kind, unsigned int lid, char state);
     void print(Kind kind, unsigned int lid, char state, int value1);
     void print(Kind kind, unsigned int lid, char state, int value1, int value2);
-}
+  private:
+    size_t GetRealIndex(Kind kind, int lid);
+};
 
 #endif // __PRINTER_H__

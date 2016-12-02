@@ -27,7 +27,7 @@ void Truck::main() {
   printer.print(Printer::Kind::Truck, 'S');
   try {
     // get machine list from name server
-    VendingMachine **machines = nameServer.getMachineList();
+    VendingMachine **machines = nameserver.getMachineList();
     size_t lastvendingmachine = 0;
 
     for (;;) {
@@ -35,10 +35,10 @@ void Truck::main() {
       yield(rng(1, 10));
       
       // stock up truck with cargo from the factory
-      plant.getShipment(cargo);
+      plant.getShipment(reinterpret_cast<unsigned int *>(cargo));
       size_t shippedproduct = 0;
-      for (auto product : cargo) {
-        shippedproduct += product;
+      for (size_t index = 0; index < VendingMachine::Flavours::COUNT; index++) {
+        shippedproduct += cargo[index];
       }
       printer.print(Printer::Kind::Truck, 'P', shippedproduct);
 
@@ -50,7 +50,7 @@ void Truck::main() {
       while (remaining > 0 || lastvendingmachine != startvendingmachine) {
         VendingMachine *machine = machines[lastvendingmachine];
         printer.print(Printer::Kind::Truck, 'd', machine->getId(), remaining);
-        size_t machinestock = machine->inventory();
+        size_t *machinestock = reinterpret_cast<size_t *>(machine->inventory());
         size_t missing = 0; // Counting how many drinks not replenished for each machine
         // Fill up each flavour soda drink at each time
         for (size_t flavour = 0; flavour < numflavours; flavour++) {

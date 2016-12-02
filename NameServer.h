@@ -4,9 +4,11 @@
 #include "Printer.h"
 #include "VendingMachine.h"
 
+_Task VendingMachine;
+
 _Task NameServer {
   private:
-    Printer *printer;
+    Printer &printer;
     size_t listsize;
     size_t nummachines;
     size_t numstudents;
@@ -15,6 +17,8 @@ _Task NameServer {
     void main();
   public:
     NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents );
+    ~NameServer();
+    void Stop();
     void VMregister( VendingMachine *vendingmachine );
     VendingMachine *getMachine( unsigned int id );
     VendingMachine **getMachineList();

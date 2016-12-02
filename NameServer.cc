@@ -3,19 +3,19 @@
 NameServer::NameServer(Printer &prt, unsigned int numVendingMachines, unsigned int numStudents)
   : printer(prt), listsize(0), nummachines(numVendingMachines), numstudents(numStudents) {
   studenttomachine = new size_t[numstudents];
-  machinelist = new *VendingMachine[nummachines];
+  machinelist = new VendingMachine*[nummachines];
   
   // round robin distribution of student to machine
-  for (int i = 0; i < numstudents; ++i) {
+  for (size_t i = 0; i < numstudents; ++i) {
     studenttomachine[i] = i % numVendingMachines;
   }
 }
 
 NameServer::~NameServer() {
   delete[] studenttomachine;
-  for (auto machine : machinelist) {
-    machine->Stop();
-    delete machine;
+  for (size_t index = 0; index < nummachines; index++) {
+    machinelist[index]->Stop();
+    delete machinelist[index];
   }
   delete[] machinelist;
   printer.print(Printer::Kind::NameServer, 'F');
@@ -30,9 +30,9 @@ void NameServer::VMregister(VendingMachine *vendingmachine) {
 }
 
 VendingMachine * NameServer::getMachine(unsigned int id) {
-  size_t index = studentmachine[id];
+  size_t index = studenttomachine[id];
   printer.print(Printer::Kind::NameServer, 'N', id, machinelist[index]->getId());
-  studentmachine[id] = (index + 1) % nummachines;
+  studenttomachine[id] = (index + 1) % nummachines;
   return machinelist[index];
 }
 

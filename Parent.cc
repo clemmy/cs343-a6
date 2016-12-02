@@ -2,7 +2,6 @@
 
 void Parent::main() {
   printer.print(Printer::Kind::Parent, 'S');
-
   for (;;) {
     _Accept(Parent::~Parent) {
       printer.print(Printer::Kind::Parent, 'F');
@@ -20,7 +19,7 @@ void Parent::main() {
 }
 
 Parent::Parent(Printer &prt, Bank &bank, unsigned int numStudents, unsigned int parentalDelay) :
-  prt(prt),
+  printer(prt),
   bank(bank),
   numStudents(numStudents),
   parentalDelay(parentalDelay) {}

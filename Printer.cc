@@ -15,27 +15,35 @@ Printer::Printer(unsigned int numStudents, unsigned int numVendingMachines, unsi
   // Producing the header
   cout << setw(8);
   cout << left << "Parent";
+  cout << setw(8);
   cout << left << "Groupoff";
+  cout << setw(8);
   cout << left << "WATOff";
+  cout << setw(8);
   cout << left << "Names";
+  cout << setw(8);
   cout << left << "Truck";
+  cout << setw(8);
   cout << left << "Plant";
   // Student(s)
   for (size_t index = 0; index < numstudent; index++) {
-    cout << left << "Stud" << index;
+    cout << setw(8);
+    cout << left << "Stud" + to_string(index);
   }
   // Machine(s)
   for (size_t index = 0; index < nummachine; index++) {
-    cout << left << "Mach" << index;
+    cout << setw(8);
+    cout << left << "Mach" + to_string(index);
   }
   // Courier(s)
   for (size_t index = 0; index < numcourier; index++) {
-    cout << left << "Cour" << index;
+    cout << setw(8);
+    cout << left << "Cour" + to_string(index);
   }
   cout << endl;
-  cout << setw(8);
   // Second line with stars
   for (size_t objindex = 0; objindex < numobjects; objindex++) {
+    cout << setw(8);
     cout << left << "*******";
   }
   cout << endl;
@@ -51,29 +59,30 @@ Printer::~Printer() {
 /*
  *  GetRealIndex helper function calculates the real index
  */
-size_t GetRealIndex(Kind kind, int lid) {
+size_t Printer::GetRealIndex(Printer::Kind kind, int lid) {
   size_t indexofkind;
-  size_t studentindex = static_cast<size_t>(Kind::Student);
+  size_t studentindex = static_cast<size_t>(Printer::Kind::Student);
   switch (kind) {
-    case Kind::Student:
+    case Printer::Kind::Student:
       indexofkind = studentindex + lid;
       break;
-    case Kind::Vending:
+    case Printer::Kind::Vending:
       indexofkind = studentindex + numstudent + lid;
       break;
-    case Kind::Courier: 
+    case Printer::Kind::Courier: 
       indexofkind = studentindex + numstudent + nummachine + lid;
       break;
     default:
+      indexofkind = -1;
       cerr << "GetRealIndex is called by a wrong object" << endl;
   }
   return indexofkind;
 }
 
 void Printer::ReleaseBuffer(bool special) {
-  cout << setw(8);
   if (special) {
     for (size_t objindex = 0; objindex < numobjects; objindex++) {
+      cout << setw(8);
       char state = buffer[objindex].state;
       if (state == 'f') {
         cout << left << "F";
@@ -87,10 +96,11 @@ void Printer::ReleaseBuffer(bool special) {
   for (size_t objindex = 0; objindex < numobjects; objindex++) {
     State info = buffer[objindex];
     if (info.state != 'x') {
+      cout << setw(8);
       if (info.value1 != -1 && info.value2 != -1) {
-        cout << left << info.state << info.value1 << "," << info.value2;
+        cout << left << info.state + to_string(info.value1) + "," + to_string(info.value2);
       } else if (info.value1 != -1) {
-        cout << left << info.state << info.value1;
+        cout << left << info.state + to_string(info.value1);
       } else {
         cout << left << info.state;
       }
