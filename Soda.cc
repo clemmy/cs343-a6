@@ -38,17 +38,21 @@ void uMain::main() {
   Bank bank(params.numStudents);
   Parent parent(printer, bank, params.numStudents, params.parentalDelay);
   WATCardOffice office(printer, bank, params.numCouriers);
-  Groupoff groupoff();
-  NameServer nameserver();
+  Groupoff groupoff(printer, params.numStudents, params.sodaCost, params.groupoffDelay);
+  NameServer nameserver(printer, params.numVendingMachines, params.numStudents);
 
   for (size_t numVend = 0; numVend < params.numVendingMachines; numVend++) {
-    machinelist[numVend] = new VendingMachine();
+    machinelist[numVend] = new VendingMachine(printer, nameserver, numVend, params.sodaCost,
+                                              params.maxStockPerFlavour);
   }
   
-  BottlingPlant *plant = new BottlingPlant();
+  BottlingPlant *plant = new BottlingPlant(printer, nameserver, params.numVendingMachines,
+                                           params.maxShippedPerFlavour, params.maxStockPerFlavour,
+                                           params.timeBetweenShipments);
   
   for (size_t numStudent = 0; numStudent < params.numStudents; numStudent++) {
-    studentlist[numStudent] = new Student();
+    studentlist[numStudent] = new Student(printer, nameserver, office, groupoff, numStudent,
+                                          params.maxPurchases);
   }
 
   for (size_t numStudent = 0; numStudent < params.numStudents; numStudent++) {
