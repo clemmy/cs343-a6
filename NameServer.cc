@@ -48,9 +48,11 @@ void NameServer::main() {
     _Accept (Stop) {
       break;
     } or _When (listsize == nummachines) _Accept(getMachine, getMachineList) {
+/*
        cout << "aasjdflasjdflkjsdaf" << endl;
        cout << "listsize : " << listsize << endl;
        cout << "nummachines : " << nummachines << endl;
+*/
     } or _When (listsize < nummachines) _Accept(VMregister) {
     }
   }

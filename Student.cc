@@ -13,18 +13,18 @@ Student::Student(Printer &prt, NameServer &nameServer, WATCardOffice &cardOffice
   maxpurchase(maxPurchases) {}
 
 Student::~Student() {
-  printer.print(Printer::Kind::Student, 'F');
+  printer.print(Printer::Kind::Student, id, 'F');
 }
 
 void Student::main() {
   size_t numBottlesToPurchase = rng(1, maxpurchase);
   VendingMachine::Flavours favouriteFlavour = (VendingMachine::Flavours)rng(3);
 
-  printer.print(Printer::Kind::Student, 'S', (int)favouriteFlavour, numBottlesToPurchase);
+  printer.print(Printer::Kind::Student, id, 'S', (int)favouriteFlavour, numBottlesToPurchase);
   WATCard::FWATCard watcard = office.create(id, 5);
   WATCard::FWATCard giftcard = groupoff.giftCard();
   VendingMachine *machine = nameserver.getMachine(id);
-  printer.print(Printer::Kind::Student, 'V', machine->getId());
+  printer.print(Printer::Kind::Student, id, 'V', machine->getId());
 
   // buy sodas
   size_t purchased = 0;
@@ -38,13 +38,13 @@ void Student::main() {
             try {
               yield(rng(1, 10));
               machine->buy(favouriteFlavour, *physicalcard);
-              printer.print(Printer::Kind::Student, 'B', physicalcard->getBalance());
+              printer.print(Printer::Kind::Student, id, 'B', physicalcard->getBalance());
             } catch (VendingMachine::Funds e) {
               watcard = office.transfer(id, machine->cost() + 5, physicalcard);
               break;
             } catch (VendingMachine::Stock e) {
               machine = nameserver.getMachine(id);
-              printer.print(Printer::Kind::Student, 'V', machine->getId());
+              printer.print(Printer::Kind::Student, id, 'V', machine->getId());
             }
           }
         } else if (giftcard.available()) {
@@ -52,18 +52,18 @@ void Student::main() {
             try {
               yield(rng(1, 10));
               machine->buy(favouriteFlavour, *giftcard());
-              printer.print(Printer::Kind::Student, 'G', giftcard()->getBalance());
+              printer.print(Printer::Kind::Student, id, 'G', giftcard()->getBalance());
               giftcard.reset();
             } catch (VendingMachine::Stock e) {
               machine = nameserver.getMachine(id);
-              printer.print(Printer::Kind::Student, 'V', machine->getId());
+              printer.print(Printer::Kind::Student, id, 'V', machine->getId());
             }
           }
         }
       }
       purchased += 1;
     } catch (WATCardOffice::Lost e) {
-      printer.print(Printer::Kind::Student, 'L');
+      printer.print(Printer::Kind::Student, id, 'L');
       watcard.reset();
       watcard = office.create(id, 5);
     }

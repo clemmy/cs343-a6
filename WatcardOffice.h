@@ -28,7 +28,7 @@ _Task WATCardOffice {
         Printer &printer;
         size_t courierid;
         void main() {
-          printer.print(Printer::Kind::Courier, 'S');
+          printer.print(Printer::Kind::Courier, courierid, 'S');
           for (;;) {
             Job *job = office.requestWork();
             if (job == nullptr) {
@@ -44,7 +44,7 @@ _Task WATCardOffice {
 
             // 1/6th chance that the card will be lost
             if (rng(5) == 0) {
-              printer.print(Printer::Kind::Courier, 'L');
+              printer.print(Printer::Kind::Courier, courierid, 'L');
               delete job->watcard;
               job->result.exception(new WATCardOffice::Lost);
             } else {
@@ -57,7 +57,7 @@ _Task WATCardOffice {
         Courier(Bank &bank, WATCardOffice &office, Printer &printer, size_t id)
           : bank(bank), office(office), printer(printer), courierid(id) {}
         ~Courier() {
-          printer.print(Printer::Kind::Courier, 'F');
+          printer.print(Printer::Kind::Courier, courierid, 'F');
         }
     };                    // communicates with bank
     void main();

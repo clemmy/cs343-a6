@@ -64,18 +64,24 @@ size_t Printer::GetRealIndex(Printer::Kind kind, int lid) {
   size_t studentindex = static_cast<size_t>(Printer::Kind::Student);
   switch (kind) {
     case Printer::Kind::Student:
+//      cout << "Student called Index";
       indexofkind = studentindex + lid;
       break;
     case Printer::Kind::Vending:
+//      cout << "Machine called Index"; 
       indexofkind = studentindex + numstudent + lid;
       break;
     case Printer::Kind::Courier: 
+//      cout << "Courier called Index";
       indexofkind = studentindex + numstudent + nummachine + lid;
       break;
     default:
       indexofkind = -1;
       cerr << "GetRealIndex is called by a wrong object" << endl;
   }
+//  cout << "studentindex : " << studentindex << endl;
+//  cout << "caller obj id  : " << lid << endl;
+//  cout << "returning index : " << indexofkind << endl;
   return indexofkind;
 }
 
@@ -95,6 +101,7 @@ void Printer::ReleaseBuffer(bool special) {
   } 
   for (size_t objindex = 0; objindex < numobjects; objindex++) {
     State info = buffer[objindex];
+//    cout << setw(8);
     if (info.state != 'x') {
       cout << setw(8);
       if (info.value1 != -1 && info.value2 != -1) {
@@ -104,6 +111,9 @@ void Printer::ReleaseBuffer(bool special) {
       } else {
         cout << left << info.state;
       }
+    } else {
+//      cout << setw(8);
+      cout << left << "\t";
     }
     buffer[objindex].state  = 'x';
     buffer[objindex].value1 = -1;

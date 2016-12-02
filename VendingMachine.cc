@@ -11,7 +11,7 @@ VendingMachine::VendingMachine(Printer &prt, NameServer &nameserver, unsigned in
 
 VendingMachine::~VendingMachine() {
   delete[] stockstatus;
-  printer.print(Printer::Kind::Vending, 'F', machineid);
+  printer.print(Printer::Kind::Vending, machineid, 'F');
 }
 
 void VendingMachine::buy(Flavours flavour, WATCard &card) {
@@ -27,18 +27,18 @@ void VendingMachine::buy(Flavours flavour, WATCard &card) {
     // Withdrawing soda cost from the Watcard
     card.withdraw(sodacost);
     stockstatus[flavourindex] -= 1;
-    printer.print(Printer::Kind::Vending, 'B', flavourindex, numsoda - 1);
+    printer.print(Printer::Kind::Vending, machineid, 'B', flavourindex, numsoda - 1);
   }
 }
 
 unsigned int * VendingMachine::inventory() {
-  printer.print(Printer::Kind::Vending, 'r', machineid);
+  printer.print(Printer::Kind::Vending, machineid, 'r');
   restocking = true;
 	return reinterpret_cast<unsigned int *>(stockstatus);
 }
 
 void VendingMachine::restocked() {
-  printer.print(Printer::Kind::Vending, 'R', machineid);
+  printer.print(Printer::Kind::Vending, machineid, 'R');
   restocking = bool();
 }
 
@@ -53,7 +53,7 @@ unsigned int VendingMachine::getId() {
 void VendingMachine::Stop() {}
 
 void VendingMachine::main() {
-  printer.print(Printer::Kind::Vending, 'S', machineid);
+  printer.print(Printer::Kind::Vending, machineid, 'S');
 	// Registering itself to the Name Server
 	nameserver.VMregister(this);
 
