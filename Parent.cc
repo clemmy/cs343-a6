@@ -6,7 +6,7 @@ void Parent::main() {
   for (;;) {
     _Accept(Parent::~Parent) {
       printer.print(Printer::Kind::Parent, 'F');
-      return;
+      break;
     } _Else {
       yield(parentalDelay); // wait
 
