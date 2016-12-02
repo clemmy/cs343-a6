@@ -1,10 +1,15 @@
 #ifndef __VENDINGMACHINE_H__
 #define __VENDINGMACHINE_H__
 
+#include "Printer.h"
+#include "NameServer.h"
+
 _Task VendingMachine {
   private:
     Printer &printer;
     NameServer &nameserver;
+    bool restocking;
+    bool buying;
     size_t machineid;
     size_t sodacost;
     size_t maxstock;
@@ -17,6 +22,7 @@ _Task VendingMachine {
     VendingMachine( Printer &prt, NameServer &nameServer, unsigned int id, unsigned int sodaCost,
                     unsigned int maxStockPerFlavour );
     ~VendingMachine();
+    void Stop();
     void buy( Flavours flavour, WATCard &card );
     unsigned int *inventory();
     void restocked();
