@@ -13,10 +13,11 @@ _Task VendingMachine {
     NameServer &nameserver;
     bool restocking;
     bool buying;
+    bool exception;
     size_t machineid;
     size_t sodacost;
     size_t maxstock;
-    size_t *stockstatus;
+    unsigned int *stockstatus;
     void main();
   public:
     enum Flavours {FANTAORANGE, COFFEE, DRPEPPER, MILKIS, COUNT};      // flavours of soda (YOU DEFINE)

@@ -33,7 +33,8 @@ void Groupoff::main() {
   for (size_t i = 0; i<numStudents;) {
     _Accept(~Groupoff) {
       break;
-    } _Accept(giftCard) {
+    } or _Accept(giftCard) {
+//        cout << "giftcard 2" << endl;
       yield(groupOffDelay);
 
       WATCard *card = new WATCard();
@@ -43,10 +44,9 @@ void Groupoff::main() {
       usedWatCards->back()->delivery(card);
 
       i++;
-    } _Else {}
+    } _Else {
+    }
   }
-
-  printer.print(Printer::Kind::Groupoff, 'F');
 }
 
 Groupoff::~Groupoff() {
@@ -58,4 +58,5 @@ Groupoff::~Groupoff() {
   }
   delete unusedWatCards;
   delete usedWatCards;
+  printer.print(Printer::Kind::Groupoff, 'F');
 }
