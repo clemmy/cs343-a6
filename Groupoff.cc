@@ -34,19 +34,17 @@ void Groupoff::main() {
     _Accept(~Groupoff) {
       break;
     } or _Accept(giftCard) {
-//        cout << "giftcard 2" << endl;
       yield(groupOffDelay);
 
       WATCard *card = new WATCard();
       card->deposit(sodaCost);
       printer.print(Printer::Kind::Groupoff, 'D', sodaCost);
-
       usedWatCards->back()->delivery(card);
-
       i++;
     } _Else {
     }
   }
+  printer.print(Printer::Kind::Groupoff, 'F');
 }
 
 Groupoff::~Groupoff() {
@@ -58,5 +56,4 @@ Groupoff::~Groupoff() {
   }
   delete unusedWatCards;
   delete usedWatCards;
-  printer.print(Printer::Kind::Groupoff, 'F');
 }

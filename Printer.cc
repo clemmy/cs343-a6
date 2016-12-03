@@ -53,6 +53,7 @@ Printer::Printer(unsigned int numStudents, unsigned int numVendingMachines, unsi
  *  Destructor to produce the footer
  */
 Printer::~Printer() {
+  delete[] buffer;
   cout << "*******************" << endl;
 }
 

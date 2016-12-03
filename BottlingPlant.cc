@@ -22,7 +22,7 @@ BottlingPlant::BottlingPlant(Printer &prt, NameServer &nameServer, unsigned int 
 BottlingPlant::~BottlingPlant() {
   delete[] stock;
   if (truck != nullptr) {
-//    delete truck; // does task delete itself when  main is completed?
+    delete truck; // does task delete itself when  main is completed?
   }
 
   printer.print(Printer::Kind::BottlingPlant, 'F');
@@ -64,6 +64,7 @@ void BottlingPlant::main() {
     _Accept(~BottlingPlant) {
       closed = true;
       _Accept(getShipment); // wait for truck to arrive
+      break;
     } or _When(!closed) _Accept(getShipment); 
 
     //wait for truck to come pick up

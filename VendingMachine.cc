@@ -4,7 +4,6 @@ VendingMachine::VendingMachine(Printer &prt, NameServer &nameserver, unsigned in
 															 unsigned int sodaCost, unsigned int maxStockPerFlavour)
   : printer(prt), nameserver(nameserver), restocking(false), buying(false), exception(false), machineid(id),
     sodacost(sodaCost), maxstock(maxStockPerFlavour) {
-//  cout << "Flavours::COUNT : " << Flavours::COUNT << endl;
   stockstatus = new unsigned int[Flavours::COUNT];
 	for (size_t index = 0; index < Flavours::COUNT; index++) {
 		stockstatus[index] = 0;
@@ -12,7 +11,6 @@ VendingMachine::VendingMachine(Printer &prt, NameServer &nameserver, unsigned in
 }
 
 VendingMachine::~VendingMachine() {
-  cout << "Vending Machine Destructor called" << endl;
   delete[] stockstatus;
   printer.print(Printer::Kind::Vending, machineid, 'F');
 }
@@ -43,15 +41,12 @@ void VendingMachine::buy(Flavours flavour, WATCard &card) {
 }
 
 unsigned int * VendingMachine::inventory() {
-//  cout << "restocking in inventory : " << restocking << endl;
   printer.print(Printer::Kind::Vending, machineid, 'r');
   restocking = true;
-//  cout << "returning stockstatus list" << endl;
   return stockstatus;
 }
 
 void VendingMachine::restocked() {
-//  cout << "restock inside" << endl;
   printer.print(Printer::Kind::Vending, machineid, 'R');
   restocking = false;
 }
@@ -72,22 +67,11 @@ void VendingMachine::main() {
 	nameserver.VMregister(this);
 
   for (;;) {
-//    try {
     _When(!restocking && !buying)  _Accept(Stop) {
       break;
     } or _When(!restocking && !buying) _Accept(inventory) {
-//      cout << "Inventory called" << endl;
-//      cout << "Buying : " << buying << " && restocking : " << restocking << endl;
     } or _When(restocking)  _Accept(restocked) {
-//      cout << "restocked called" << endl;
     } or _When(!restocking)  _Accept(buy) {
     }
-/*
-    } catch (uMutexFailure::RendezvousFailure &e) {
-//      throw Funds();
-        buying = false;
-        throw new Stock();
-    }
-*/
   }
 }

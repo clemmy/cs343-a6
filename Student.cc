@@ -21,21 +21,14 @@ void Student::main() {
   VendingMachine::Flavours favouriteFlavour = (VendingMachine::Flavours)rng(3);
 
   printer.print(Printer::Kind::Student, id, 'S', (int)favouriteFlavour, numBottlesToPurchase);
-//        cout << "0" << endl;
   WATCard::FWATCard watcard = office.create(id, 5);
-//        cout << "1" << endl;
   WATCard::FWATCard giftcard = groupoff.giftCard();
-//        cout << "2" << endl;
-//  VendingMachine *machine = nameserver.getMachine(id);
-//  printer.print(Printer::Kind::Student, id, 'V', machine->getId());
 
   // buy sodas
   size_t purchased = 0;
   while (purchased < numBottlesToPurchase) {
-
     VendingMachine *machine = nameserver.getMachine(id);
     printer.print(Printer::Kind::Student, id, 'V', machine->getId());
-//        cout << "tring to buy" << endl;
     try {
       _Select(watcard || giftcard) {
         if (watcard.available()) {
@@ -61,6 +54,7 @@ void Student::main() {
               yield(rng(1, 10));
               machine->buy(favouriteFlavour, *giftcard());
               printer.print(Printer::Kind::Student, id, 'G', giftcard()->getBalance());
+              delete giftcard();
               giftcard.reset();
               break;
             } catch (VendingMachine::Stock e) {
@@ -78,11 +72,10 @@ void Student::main() {
     }
   }
 
-/*
+  // Freeing (Deallocating) the dynamicalled allocated spaces
   try {
-    Watcard *physicalcard = watcard();
+    WATCard *physicalcard = watcard();
     delete physicalcard;
   } catch (WATCardOffice::Lost e) {
   }
-*/
 }

@@ -13,10 +13,14 @@ NameServer::NameServer(Printer &prt, unsigned int numVendingMachines, unsigned i
 
 NameServer::~NameServer() {
   delete[] studenttomachine;
+/* // If try accessing, it throws an exception (they've been prob dealloc'ed already)
   for (size_t index = 0; index < nummachines; index++) {
-    machinelist[index]->Stop();
-    delete machinelist[index];
+    if (machinelist[index] != nullptr) {
+      machinelist[index]->Stop();
+      delete machinelist[index];
+    }
   }
+*/
   delete[] machinelist;
   printer.print(Printer::Kind::NameServer, 'F');
 }
@@ -48,11 +52,6 @@ void NameServer::main() {
     _Accept (Stop) {
       break;
     } or _When (listsize == nummachines) _Accept(getMachine, getMachineList) {
-/*
-       cout << "aasjdflasjdflkjsdaf" << endl;
-       cout << "listsize : " << listsize << endl;
-       cout << "nummachines : " << nummachines << endl;
-*/
     } or _When (listsize < nummachines) _Accept(VMregister) {
     }
   }
