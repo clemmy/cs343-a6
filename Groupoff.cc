@@ -33,19 +33,17 @@ void Groupoff::main() {
   for (size_t i = 0; i<numStudents;) {
     _Accept(~Groupoff) {
       break;
-    } _Accept(giftCard) {
+    } or _Accept(giftCard) {
       yield(groupOffDelay);
 
       WATCard *card = new WATCard();
       card->deposit(sodaCost);
       printer.print(Printer::Kind::Groupoff, 'D', sodaCost);
-
       usedWatCards->back()->delivery(card);
-
       i++;
-    } _Else {}
+    } _Else {
+    }
   }
-
   printer.print(Printer::Kind::Groupoff, 'F');
 }
 

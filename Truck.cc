@@ -10,7 +10,7 @@ Truck::Truck(Printer &prt, NameServer &nameServer, BottlingPlant &plant,
   nummachines(numVendingMachines),
   maxstockperflavour(maxStockPerFlavour) {
   numflavours = VendingMachine::Flavours::COUNT;
-  cargo = new size_t[numflavours];
+  cargo = new unsigned int[numflavours];
   for (size_t index = 0; index < numflavours; index++) {
     cargo[index] = 0;
   }
@@ -35,7 +35,7 @@ void Truck::main() {
       yield(rng(1, 10));
       
       // stock up truck with cargo from the factory
-      plant.getShipment(reinterpret_cast<unsigned int *>(cargo));
+      plant.getShipment(cargo);
       size_t shippedproduct = 0;
       for (size_t index = 0; index < VendingMachine::Flavours::COUNT; index++) {
         shippedproduct += cargo[index];
@@ -43,14 +43,14 @@ void Truck::main() {
       printer.print(Printer::Kind::Truck, 'P', shippedproduct);
 
       // stock up vending machines
-      size_t startvendingmachine = lastvendingmachine;
       size_t remaining = shippedproduct;
+      size_t travel = 0;
 
       // Begin delivering to the vendingmachines with two stopping conditions
-      while (remaining > 0 || lastvendingmachine != startvendingmachine) {
+      while (remaining > 0 && travel < nummachines) {
         VendingMachine *machine = machines[lastvendingmachine];
         printer.print(Printer::Kind::Truck, 'd', machine->getId(), remaining);
-        size_t *machinestock = reinterpret_cast<size_t *>(machine->inventory());
+        unsigned int *machinestock = machine->inventory();
         size_t missing = 0; // Counting how many drinks not replenished for each machine
         // Fill up each flavour soda drink at each time
         for (size_t flavour = 0; flavour < numflavours; flavour++) {
@@ -67,12 +67,15 @@ void Truck::main() {
           printer.print(Printer::Kind::Truck, 'U', machine->getId(), missing);
         }
         printer.print(Printer::Kind::Truck, 'D', machine->getId(), remaining);
+        machine->restocked();
         // Keep track of the last vending machine
         lastvendingmachine = (lastvendingmachine + 1) % nummachines;
+        travel += 1;
       }
     }
-  } catch(BottlingPlant::Shutdown e) {
-    Stop();
+    cout << "weird" << endl;
+  } catch (BottlingPlant::Shutdown e) {
+    _Accept(~Truck);
+       
   }
 }
-

@@ -14,7 +14,11 @@
 #include <cstring>
 
 void uMain::main() {
-//  char *configfile = "soda.config";
+  if (argc > 3) {
+    cerr << "Usage : soda [ config-file [ Seed ] ]" << endl;
+    return;
+  }
+
   string configfile = "soda.config";
   size_t seed;
   switch (argc) {
@@ -26,12 +30,9 @@ void uMain::main() {
     default:
       break;
   }
+
   ConfigParms params;
   processConfigFile(configfile.c_str(), params);
-
-  cout << params.sodaCost << endl;
-  cout << params.numCouriers << endl;
-  cout << params.maxPurchases << endl;
 
   VendingMachine **machinelist = new VendingMachine*[params.numVendingMachines];
   Student **studentlist = new Student*[params.numStudents];
@@ -64,7 +65,10 @@ void uMain::main() {
 
   delete plant;
   for (size_t numVend = 0; numVend < params.numVendingMachines; numVend++) {
+    machinelist[numVend]->Stop();
     delete machinelist[numVend];
   }
   delete[] machinelist;
+  nameserver.Stop();
+  office.Stop();
 }

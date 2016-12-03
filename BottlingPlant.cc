@@ -30,13 +30,16 @@ BottlingPlant::~BottlingPlant() {
 
 void BottlingPlant::getShipment(unsigned int cargo[]) {
   if (closed) {
+    uRendezvousAcceptor();
     _Throw Shutdown();
   }
 
   // transfer stock to cargo and reset stock
   for (size_t i = 0; i < VendingMachine::Flavours::COUNT; i++) {
-    cargo[i] = stock[i];
+    size_t numdrink = stock[i];
+    cargo[i] = numdrink;
     stock[i] = 0;
+//    cout << "Plant cargo[i] : " << cargo[i] << endl;
   }
   printer.print(Printer::Kind::BottlingPlant, 'P');
 }
@@ -54,12 +57,14 @@ void BottlingPlant::main() {
     for (size_t i = 0; i < VendingMachine::Flavours::COUNT; ++i) {
       stock[i] = rng(maxshipstock);
       produceCount += stock[i];
+//      cout << "maxshipstock : " << maxshipstock << " stock[i] : " << stock[i] << endl;
     } 
     printer.print(Printer::Kind::BottlingPlant, 'G', produceCount);
 
     _Accept(~BottlingPlant) {
       closed = true;
       _Accept(getShipment); // wait for truck to arrive
+      break;
     } or _When(!closed) _Accept(getShipment); 
 
     //wait for truck to come pick up

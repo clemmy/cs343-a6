@@ -53,6 +53,7 @@ Printer::Printer(unsigned int numStudents, unsigned int numVendingMachines, unsi
  *  Destructor to produce the footer
  */
 Printer::~Printer() {
+  delete[] buffer;
   cout << "*******************" << endl;
 }
 
@@ -131,11 +132,15 @@ void Printer::print(Kind kind, char state) {
     }
     buffer[kind].state = 'f';
     ReleaseBuffer(true);
+    buffer[kind].state = 'x';
   } else if (oldstate != 'x' && oldstate != state) {
     ReleaseBuffer();
   }
-  buffer[kind].state = state;
-  buffercount += 1;
+
+  if (state != 'F') {
+    buffer[kind].state = state;
+    buffercount += 1;
+  }
 }
 
 void Printer::print(Kind kind, char state, int value1) {

@@ -15,7 +15,7 @@ _Task Truck {
     unsigned int nummachines;
     unsigned int maxstockperflavour;
     size_t numflavours;
-    size_t *cargo;
+    unsigned int *cargo;
     void main();
     void Stop();
   public:
