@@ -15,8 +15,8 @@
 
 void uMain::main() {
   if (argc > 3) {
-    cerr << "Usage : soda [ config-file [ Seed ] ]" << endl;
-    return;
+    cerr << "Usage : soda [ config-file [ Seed > 0] ]" << endl;
+    exit(EXIT_FAILURE);
   }
 
   string configfile = "soda.config";
@@ -24,7 +24,13 @@ void uMain::main() {
   switch (argc) {
     case 3:
       seed = atoi(argv[2]);
-      rng.set_seed(seed);    
+
+      if (seed <= 0) { // Seed must be positive
+        cerr << "Usage : soda [ config-file [ Seed > 0] ]" << endl;
+        exit(EXIT_FAILURE);
+      }
+
+      rng.set_seed(seed);
     case 2:
       configfile = argv[1];
     default:
@@ -48,11 +54,11 @@ void uMain::main() {
     machinelist[numVend] = new VendingMachine(printer, nameserver, numVend, params.sodaCost,
                                               params.maxStockPerFlavour);
   }
-  
+
   BottlingPlant *plant = new BottlingPlant(printer, nameserver, params.numVendingMachines,
                                            params.maxShippedPerFlavour, params.maxStockPerFlavour,
                                            params.timeBetweenShipments);
-  
+
   for (size_t numStudent = 0; numStudent < params.numStudents; numStudent++) {
     studentlist[numStudent] = new Student(printer, nameserver, office, groupoff, numStudent,
                                           params.maxPurchases);

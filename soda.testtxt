@@ -1,6 +1,6 @@
 [Change]  None
 [Command] ./soda 1 2 3
-Usage : soda [ config-file [ Seed ] ]
+Usage : soda [ config-file [ Seed > 0 ] ]
 [Analysis] The usage text is printed as the number of arguments specified on the program is incorrect.
 
 [Change]  None
