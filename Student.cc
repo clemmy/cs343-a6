@@ -30,8 +30,10 @@ void Student::main() {
     VendingMachine *machine = nameserver.getMachine(id);
     printer.print(Printer::Kind::Student, id, 'V', machine->getId());
     try {
+      // block until student has a card
       _Select(watcard || giftcard) {
         if (watcard.available()) {
+          // try to use watcard if available
           WATCard *physicalcard = watcard(); // Checking if an exception is thrown
 
           for (;;) {
@@ -49,6 +51,7 @@ void Student::main() {
             }
           }
         } else if (giftcard.available()) {
+          // try to use gift card if available
           for (;;) {
             try {
               yield(rng(1, 10));
@@ -66,16 +69,23 @@ void Student::main() {
       }
       purchased += 1;
     } catch (WATCardOffice::Lost e) {
+      // create new watcard if lost
       printer.print(Printer::Kind::Student, id, 'L');
       watcard.reset();
       watcard = office.create(id, 5);
     }
   }
 
-  // Freeing (Deallocating) the dynamicalled allocated spaces
-  try {
-    WATCard *physicalcard = watcard();
-    delete physicalcard;
-  } catch (WATCardOffice::Lost e) {
+  // Freeing (Deallocating) the dynamically allocated spaces
+  _Select (watcard) {
+    try {
+      WATCard *physicalcard = watcard();
+      delete physicalcard;
+    } catch (WATCardOffice::Lost e) {
+    }
+  }
+  _Select (giftcard) {
+    WATCard *gift = giftcard();
+    delete gift;
   }
 }

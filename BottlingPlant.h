@@ -15,9 +15,9 @@ _Task BottlingPlant {
     size_t maxshipstock;
     size_t maxstock;
     size_t shippingtime;
-    size_t *stock;
-    Truck *truck;
-    bool closed;
+    size_t *stock; // cargo to copy to truck
+    Truck *truck; // truck pointer
+    bool closed; // flag for if plant is closed
     void main();
   public:
     _Event Shutdown {};                       // shutdown plant

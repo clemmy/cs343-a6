@@ -12,8 +12,8 @@ _Task Student {
     NameServer &nameserver;
     WATCardOffice &office;
     Groupoff &groupoff;
-    size_t id;
-    size_t maxpurchase;
+    size_t id; // student id
+    size_t maxpurchase; // max purchases student will make
     void main();
   public:
     Student( Printer &prt, NameServer &nameServer, WATCardOffice &cardOffice, Groupoff &groupoff,

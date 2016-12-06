@@ -73,7 +73,6 @@ void Truck::main() {
         travel += 1;
       }
     }
-    cout << "weird" << endl;
   } catch (BottlingPlant::Shutdown e) {
     _Accept(~Truck);
        

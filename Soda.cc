@@ -21,6 +21,7 @@ void uMain::main() {
 
   string configfile = "soda.config";
   size_t seed;
+  // read in and parse args
   switch (argc) {
     case 3:
       seed = atoi(argv[2]);
@@ -37,9 +38,11 @@ void uMain::main() {
       break;
   }
 
+  // parse config file
   ConfigParms params;
   processConfigFile(configfile.c_str(), params);
 
+  // start tasks
   VendingMachine **machinelist = new VendingMachine*[params.numVendingMachines];
   Student **studentlist = new Student*[params.numStudents];
 
@@ -64,6 +67,7 @@ void uMain::main() {
                                           params.maxPurchases);
   }
 
+  // end tasks
   for (size_t numStudent = 0; numStudent < params.numStudents; numStudent++) {
     delete studentlist[numStudent];
   }

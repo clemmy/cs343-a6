@@ -22,7 +22,7 @@ BottlingPlant::BottlingPlant(Printer &prt, NameServer &nameServer, unsigned int 
 BottlingPlant::~BottlingPlant() {
   delete[] stock;
   if (truck != nullptr) {
-    delete truck; // does task delete itself when  main is completed?
+    delete truck; 
   }
 
   printer.print(Printer::Kind::BottlingPlant, 'F');
@@ -39,7 +39,6 @@ void BottlingPlant::getShipment(unsigned int cargo[]) {
     size_t numdrink = stock[i];
     cargo[i] = numdrink;
     stock[i] = 0;
-//    cout << "Plant cargo[i] : " << cargo[i] << endl;
   }
   printer.print(Printer::Kind::BottlingPlant, 'P');
 }
@@ -50,19 +49,18 @@ void BottlingPlant::main() {
   truck = new Truck(printer, nameserver, *this, nummachines, maxstock); 
   
   for (;;) {
-    //produce
+    //produce soda
     yield(shippingtime);
 
     int produceCount = 0;
     for (size_t i = 0; i < VendingMachine::Flavours::COUNT; ++i) {
       stock[i] = rng(maxshipstock);
       produceCount += stock[i];
-//      cout << "maxshipstock : " << maxshipstock << " stock[i] : " << stock[i] << endl;
     } 
     printer.print(Printer::Kind::BottlingPlant, 'G', produceCount);
 
     _Accept(~BottlingPlant) {
-      closed = true;
+      closed = true; // set closed flag
       _Accept(getShipment); // wait for truck to arrive
       break;
     } or _When(!closed) _Accept(getShipment); 

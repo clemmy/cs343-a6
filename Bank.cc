@@ -7,6 +7,7 @@ Bank::Bank(unsigned int numStudents) {
   }
 }
 
+// deposit money to student account
 void Bank::deposit(unsigned int id, unsigned int amount) {
   balances[id] += amount;
 }

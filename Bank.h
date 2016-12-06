@@ -2,7 +2,7 @@
 #define __BANK_H__
 
 _Monitor Bank {
-    size_t *balances;
+    size_t *balances; // holds balances for every student
   public:
     Bank(unsigned int numStudents);
     ~Bank();

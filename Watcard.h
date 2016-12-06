@@ -7,7 +7,7 @@ class WATCard {
   private:
     WATCard( const WATCard & );               // prevent copying
     WATCard &operator=( const WATCard & );
-    unsigned int balance;
+    unsigned int balance; // balance of the Watcard
   public:
     typedef Future_ISM<WATCard *> FWATCard;   // future watcard pointer
     WATCard();

@@ -36,6 +36,7 @@ void Groupoff::main() {
     } or _Accept(giftCard) {
       yield(groupOffDelay);
 
+      // deliver gift card to random student
       WATCard *card = new WATCard();
       card->deposit(sodaCost);
       printer.print(Printer::Kind::Groupoff, 'D', sodaCost);

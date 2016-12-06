@@ -13,14 +13,6 @@ NameServer::NameServer(Printer &prt, unsigned int numVendingMachines, unsigned i
 
 NameServer::~NameServer() {
   delete[] studenttomachine;
-/* // If try accessing, it throws an exception (they've been prob dealloc'ed already)
-  for (size_t index = 0; index < nummachines; index++) {
-    if (machinelist[index] != nullptr) {
-      machinelist[index]->Stop();
-      delete machinelist[index];
-    }
-  }
-*/
   delete[] machinelist;
   printer.print(Printer::Kind::NameServer, 'F');
 }
@@ -36,7 +28,7 @@ void NameServer::VMregister(VendingMachine *vendingmachine) {
 VendingMachine * NameServer::getMachine(unsigned int id) {
   size_t index = studenttomachine[id];
   printer.print(Printer::Kind::NameServer, 'N', id, machinelist[index]->getId());
-  studenttomachine[id] = (index + 1) % nummachines;
+  studenttomachine[id] = (index + 1) % nummachines; // increment counter so they get next machine next time
   return machinelist[index];
 }
 

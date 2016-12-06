@@ -64,8 +64,8 @@ _Task WATCardOffice {
     Printer &printer;
     Bank &bank;
     size_t numcourier;
-    queue<Job*> joblist;
-    Courier **courierlist;
+    queue<Job*> joblist; // queue of job list
+    Courier **courierlist; // array of couriers
   public:
     _Event Lost {};                           // lost WATCard
     WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers );

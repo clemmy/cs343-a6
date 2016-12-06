@@ -12,12 +12,12 @@ _Task Truck {
     Printer &printer;
     NameServer &nameserver;
     BottlingPlant &plant;
-    unsigned int nummachines;
+    unsigned int nummachines; // total number of machines
     unsigned int maxstockperflavour;
     size_t numflavours;
-    unsigned int *cargo;
+    unsigned int *cargo; // array stock per flavour
     void main();
-    void Stop();
+    void Stop(); // stop function (destructor alternative)
   public:
     Truck( Printer &prt, NameServer &nameServer, BottlingPlant &plant,
            unsigned int numVendingMachines, unsigned int maxStockPerFlavour );

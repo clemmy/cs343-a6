@@ -15,6 +15,7 @@ WATCardOffice::~WATCardOffice() {
 }
 
 WATCard::FWATCard WATCardOffice::create(unsigned int sid, unsigned int amount) {
+  // creates job that creates a watcard
   WATCard *card = new WATCard();
   Job *job = new Job(sid, amount, card);
   joblist.push(job);
@@ -23,6 +24,7 @@ WATCard::FWATCard WATCardOffice::create(unsigned int sid, unsigned int amount) {
 }
 
 WATCard::FWATCard WATCardOffice::transfer(unsigned int sid, unsigned int amount, WATCard *card) {
+  // creates job that transfers money to a watcard
   Job *job = new Job(sid, amount, card);
   joblist.push(job);
   printer.print(Printer::Kind::WATCardOffice, 'T', sid, amount);
@@ -30,6 +32,7 @@ WATCard::FWATCard WATCardOffice::transfer(unsigned int sid, unsigned int amount,
 }
 
 WATCardOffice::Job * WATCardOffice::requestWork() {
+  // return front of job list
   if (joblist.empty()) {
     return nullptr;
   }
