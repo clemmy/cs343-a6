@@ -1,311 +1,334 @@
 [Change]  None
+[Command] ./soda 1 2 3
+Usage : soda [ config-file [ Seed ] ]
+[Analysis] The usage text is printed as the number of arguments specified on the program is incorrect.
+
+[Change]  None
+[Command] ./soda incorrectfile.txt
+Error: could not open input file "incorrectfile.txt"
+[Analysis] Since the file path does not exist, the program exits with an error message that tells the
+user that the specified input file is incorrect.
+
+[Change]  None
 [Command] ./soda
-Parent  GroupoffWATOff  Names   Truck   Plant   Stud0   Stud1   Mach0   Mach1   Mach2   Cour0   
-******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* 
-S       S       S       S       				S       			
-D0,3    	C1,5    R1      S       S       S0,7    S2,2    	S       S       S       
-D1,2    	W       R2      	G4      					t0,5    
-D0,2    		N0,0    		V0      				T0,5    
-				P4      P       					t1,5    
-				d0,4    			r       			
-				U0,16   							
-D0,1    D2      W       N0,1    D0,0    P       V1      V1      R       		T1,5    
-D0,1    			P0      G7      						
-				P7      P       						
-				d1,7    				r       		
-				U1,13   							
-D0,3    D2      		D1,0    				R       		
-...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
-D0,2    		N0,2    		B3      		B0,0    		
-D0,3    		N0,1    P0      P       V1      V0      				
-					G3      						
-				P3      P       						
-				d2,3    					r       	
-				U2,17   							
-D0,3    		N1,1    D2,0    		B3      B2,0    			
-D1,1    		N1,2    		V2      V2      		R       	
-			N0,0    		B1      			B0,0    	
-D0,2    			P0      P       V0      					
-D1,1    		N0,1    	G7      V1      B1      		B2,0    	
-				P7      P       						
-				d0,7    			r       			
-				U0,10   							
-D0,2    		N0,2    D0,0    P       V2      	R       			
-D1,1    		N0,0    P0      G9      V0      					
-				P9      P       						
-				d1,9    				r       		
-				U1,6    							
-D1,2    			D1,1    				R       		
-				d2,1    					r       	
-				U2,18   							
-D1,3    	T0,7    N0,1    D2,0    P       V1      			R       	
-D1,2    			P0      						t0,7    
-D0,1    	W       		G2      					T0,7    
-				P2      P       						
-				d0,2    			r       			
-				U0,8    							
-D1,3    		N0,2    D0,0    	G0      	R       B0,0    		
-D1,2    		N0,0    P0      P       V0      					
-D0,1    				G3      						
-				P3      P       						
-				d1,3    				r       		
-				U1,5    							
-D1,3    			D1,1    				R       		
-				d2,1    					r       	
-				U2,17   							
-D0,3    		N0,1    D2,0    	B6      	B0,3    	R       	
-D0,1    		N0,0    P0      P       V0      	B0,2    			
-			N0,1    		B4      					
-D0,3    				G3      V1      					
-				P3      P       						
-				d0,3    			r       			
-				U0,7    							
-D1,2    		N0,0    D0,0    P       V0      	R       			
-D1,1    			P0      	B2      	B0,4    			
-...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     
-...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     
-D1,1    				G4      						
-...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     
-...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     
-D0,1    											
-...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     
-D0,2    											
-...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     
-D1,3    											
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     
-D1,3    											
-...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     
-D0,2    											
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       
-...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     
-D0,2    											
-F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
+Parent  GroupoffWATOff  Names   Truck   Plant   Stud0   Stud1   Mach0   Mach1   Mach2   Cour0
+******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* *******
+S       S       S       S       				S
+D0,3    	C1,5    R1      S       S       S0,7    S2,2    	S       S       S
+D1,2    	W       R2      	G4      					t0,5
+D0,2    		N0,0    		V0      				T0,5
+				P4      P       					t1,5
+				d0,4    			r
+				U0,16
+D0,1    D2      W       N0,1    D0,0    P       V1      V1      R       		T1,5
+D0,1    			P0      G7
+				P7      P
+				d1,7    				r
+				U1,13
+D0,3    D2      		D1,0    				R
+...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
+D0,2    		N0,2    		B3      		B0,0
+D0,3    		N0,1    P0      P       V1      V0
+					G3
+				P3      P
+				d2,3    					r
+				U2,17
+D0,3    		N1,1    D2,0    		B3      B2,0
+D1,1    		N1,2    		V2      V2      		R
+			N0,0    		B1      			B0,0
+D0,2    			P0      P       V0
+D1,1    		N0,1    	G7      V1      B1      		B2,0
+				P7      P
+				d0,7    			r
+				U0,10
+D0,2    		N0,2    D0,0    P       V2      	R
+D1,1    		N0,0    P0      G9      V0
+				P9      P
+				d1,9    				r
+				U1,6
+D1,2    			D1,1    				R
+				d2,1    					r
+				U2,18
+D1,3    	T0,7    N0,1    D2,0    P       V1      			R
+D1,2    			P0      						t0,7
+D0,1    	W       		G2      					T0,7
+				P2      P
+				d0,2    			r
+				U0,8
+D1,3    		N0,2    D0,0    	G0      	R       B0,0
+D1,2    		N0,0    P0      P       V0
+D0,1    				G3
+				P3      P
+				d1,3    				r
+				U1,5
+D1,3    			D1,1    				R
+				d2,1    					r
+				U2,17
+D0,3    		N0,1    D2,0    	B6      	B0,3    	R
+D0,1    		N0,0    P0      P       V0      	B0,2
+			N0,1    		B4
+D0,3    				G3      V1
+				P3      P
+				d0,3    			r
+				U0,7
+D1,2    		N0,0    D0,0    P       V0      	R
+D1,1    			P0      	B2      	B0,4
+...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...
+...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...
+D1,1    				G4
+...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...
+...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...
+D0,1
+...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...
+D0,2
+...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...
+D1,3
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...
+D1,3
+...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...
+D0,2
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F
+...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...
+D0,2
+F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
 *******************
+
+[Analysis] The program follows the specifications. All the students got their number of sodas before they finished.
+Every task is started and finished. The truck is started after the bottling plant, as expected. The configuration
+is adhered to.
 
 [Change]  None
 [Command] ./soda soda.config 3000
-Parent  GroupoffWATOff  Names   Truck   Plant   Stud0   Stud1   Mach0   Mach1   Mach2   Cour0   
-******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* 
-S       S       S       S                                       S                               
-D0,2            C1,5    R1      S       S       S3,8    S2,1            S       S       S       
-D1,3            W       R2              G10                                             t0,5    
-D0,3                    N0,0                    V0                                      T0,5    
-D0,2    D2      W               P10     P                                               t1,5    
-                                d0,10                           r                               
-                                U0,10                                                           
-D1,3                    N1,1    D0,0                    V1      R                       T1,5    
-                        N0,1                    B3              B3,2                            
-D1,1                    N0,2    P0      P       V2      V0                                      
-D0,2    D2                              G4              B3      B2,2                            
-...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
-D0,1                            P4      P                                                       
-                                d1,4                                    r                       
-                                U1,16                                                           
-D0,2                    N0,0    D1,0    P       V0                      R                       
-                        N0,1    P0              B1              B3,1                            
-D0,2                    N0,2            G8      V2                                              
-                                P8      P                                                       
-                                d2,8                                            r               
-                                U2,12                                                           
-D1,2                            D2,0    P                                       R               
-D1,2            T0,7    N0,0    P0      G9      V0                                      t0,7    
-D1,1                            P9      P                                               T0,7    
-                                d0,9                            r                               
-                                U0,5                                                            
-D0,2            W               D0,1                            R                               
-                                d1,1                                    r                       
-                                U1,15                                                           
-D1,3                    N0,1    D1,0            G0              B3,0                            
-D1,3                    N0,2                    V2                      R       B3,2            
-                        N0,0                    B6                                              
-D0,3                    N0,1    P0      P       V1                                              
-D1,1                    N0,2            G3      V2                                              
-                                P3      P                                                       
-                                d2,3                                            r               
-                                U2,10                                                           
-D0,3                            D2,0    P                                       R               
-D1,3                    N0,0    P0              B4                              B3,1            
-D0,2                                    G3      V0                                              
-                                P3      P                                                       
-                                d0,3                            r                               
-                                U0,5                                                            
-D1,2                            D0,2                            R                               
-                                d1,2                                    r                       
-                                U1,13                                                           
-D0,2                    N0,1    D1,0    P       V1                      R                       
-D1,3                            P0      G4                                                      
-                                P4      P                                                       
-                                d2,4                                            r               
-                                U2,7                                                            
-D0,2                    N0,2    D2,0    P       V2                              R               
-                        N0,0    P0              B2                              B3,3            
-D1,2                                    G7      V0                                              
-                                P7      P                                                       
-                                d0,7                            r                               
-                                U0,4                                                            
-D0,1                            D0,6                            R                               
-                                d1,6                                    r                       
-                                U1,8                                                            
-D1,1                            D1,1            B0              B3,0    R                       
-                                d2,1                                            r               
-                                U2,8                                                            
-D0,1                            D2,1                                                            
-...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     
-...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     
-D0,1                            P0      P                                       R               
-D1,1                                    G10                                                     
-...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     
-...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     
-D0,1                                                                                            
-...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     
-D1,1                                                                                            
-...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     
-D1,2                                                                                            
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     
-D1,1                                                                                            
-...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     
-D0,3                                                                                            
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       
-...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     
-D1,2                                                                                            
-F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
+Parent  GroupoffWATOff  Names   Truck   Plant   Stud0   Stud1   Mach0   Mach1   Mach2   Cour0
+******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* *******
+S       S       S       S                                       S
+D0,2            C1,5    R1      S       S       S3,8    S2,1            S       S       S
+D1,3            W       R2              G10                                             t0,5
+D0,3                    N0,0                    V0                                      T0,5
+D0,2    D2      W               P10     P                                               t1,5
+                                d0,10                           r
+                                U0,10
+D1,3                    N1,1    D0,0                    V1      R                       T1,5
+                        N0,1                    B3              B3,2
+D1,1                    N0,2    P0      P       V2      V0
+D0,2    D2                              G4              B3      B2,2
+...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
+D0,1                            P4      P
+                                d1,4                                    r
+                                U1,16
+D0,2                    N0,0    D1,0    P       V0                      R
+                        N0,1    P0              B1              B3,1
+D0,2                    N0,2            G8      V2
+                                P8      P
+                                d2,8                                            r
+                                U2,12
+D1,2                            D2,0    P                                       R
+D1,2            T0,7    N0,0    P0      G9      V0                                      t0,7
+D1,1                            P9      P                                               T0,7
+                                d0,9                            r
+                                U0,5
+D0,2            W               D0,1                            R
+                                d1,1                                    r
+                                U1,15
+D1,3                    N0,1    D1,0            G0              B3,0
+D1,3                    N0,2                    V2                      R       B3,2
+                        N0,0                    B6
+D0,3                    N0,1    P0      P       V1
+D1,1                    N0,2            G3      V2
+                                P3      P
+                                d2,3                                            r
+                                U2,10
+D0,3                            D2,0    P                                       R
+D1,3                    N0,0    P0              B4                              B3,1
+D0,2                                    G3      V0
+                                P3      P
+                                d0,3                            r
+                                U0,5
+D1,2                            D0,2                            R
+                                d1,2                                    r
+                                U1,13
+D0,2                    N0,1    D1,0    P       V1                      R
+D1,3                            P0      G4
+                                P4      P
+                                d2,4                                            r
+                                U2,7
+D0,2                    N0,2    D2,0    P       V2                              R
+                        N0,0    P0              B2                              B3,3
+D1,2                                    G7      V0
+                                P7      P
+                                d0,7                            r
+                                U0,4
+D0,1                            D0,6                            R
+                                d1,6                                    r
+                                U1,8
+D1,1                            D1,1            B0              B3,0    R
+                                d2,1                                            r
+                                U2,8
+D0,1                            D2,1
+...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...
+...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...
+D0,1                            P0      P                                       R
+D1,1                                    G10
+...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...
+...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...
+D0,1
+...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...
+D1,1
+...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...
+D1,2
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...
+D1,1
+...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...
+D0,3
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F
+...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...
+D1,2
+F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
 *******************
+
+[Analysis] The program follows the specifications. All the students got their number of sodas before they finished.
+Every task is started and finished. The truck is started after the bottling plant, as expected. The configuration
+is adhered to.
 
 [Change]  MaxPurchases = 2, GroupoffDelay = 50, NumStudents = 5
 [Command] ./soda soda.config2 30
-Parent  GroupoffWATOff  Names   Truck   Plant   Stud0   Stud1   Stud2   Stud3   Stud4   Mach0   Mach1   Mach2   Cour0   
-******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* 
-S       S       S       S                                                               S                               
-D3,2            C1,5    R1      S       S       S3,2    S1,1    S2,1    S0,1    S3,1            S       S       S       
-D2,2            C2,5    R2              G6                                                                              
-D4,2            C4,5    N0,0                    V0                                                              t0,5    
-D2,2            W               P6      P                                                                               
-                                d0,6                                                    r                               
-                                U0,14                                                                                   
-D4,1                            D0,0    P                                               R                               
-D0,1                            P0                                                                              T0,5    
-D4,3            W                       G7                                                                      t1,5    
-                                P7      P                                                                               
-                                d1,7                                                            r                       
-                                U1,13                                                                                   
-                        N0,1    D1,0            B3                                      B3,0                            
-D1,1                            P0      P       V1                                              R                       
-D3,2                                    G6                                                                              
-                                P6      P                                                                               
-                                d2,6                                                                    r               
-                                U2,14                                                                                   
-                                D2,0            B1                                              B3,0                    
-...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     
-D2,3    D2              N1,1    P0      P               V1                                              R               
-                                        G6                                                                              
-                                P6      P                                                                               
-                                d0,6                                                    r                               
-                                U0,9                                                                                    
-D4,1                            D0,0    P                                               R                               
-D0,3                            P0      G6                                                                              
-                                P6      P                                                                               
-                                d1,6                                                            r                       
-                                U1,9                                                                                    
-D0,2                            D1,1                                                            R                       
-                                d2,1                                                                    r               
-                                U2,13                                                                                   
-D1,1                            D2,0                                                                    R       T1,5    
-                                                                                                                t2,5    
-D2,2            W                                                                                               T2,5    
-                                                                                                                t3,5    
-D0,3            W                                                                                               T3,5    
-                                                                                                                t4,5    
-D1,2            W               P0      P               B3                                      B1,4            T4,5    
-...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     
-D4,3                                    G8                                                                              
-                                P8      P                                                                               
-                                d0,8                                                    r                               
-                                U0,2                                                                                    
-D2,2                            D0,1                                                    R                               
-                                d1,1                                                            r                       
-                                U1,9                                                                                    
-D2,2                            D1,0    P                                                       R                       
-D2,2    D2              N2,2    P0      G7                      V2                                                      
-                                P7      P                                                                               
-                                d2,7                                                                    r               
-                                U2,6                                                                                    
-D4,3                            D2,0                                                                    R               
-                                P0      P                       B3                                      B2,1            
-...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     
-D0,2                                    G6                                                                              
-                                P6      P                                                                               
-                                d0,6                                                    r                               
-                                U0,2                                                                                    
-D1,3                            D0,6                                                    R                               
-                                d1,6                                                            r                       
-                                U1,6                                                                                    
-D2,3                            D1,3                                                            R                       
-                                d2,3                                                                    r               
-                                U2,5                                                                                    
-D2,1                            D2,1    P                                                               R               
-D0,3                            P0      G3                                                                              
-                                P3      P                                                                               
-                                d0,3                                                    r                               
-D2,1                            D0,1                                                    R                               
-                                d1,1                                                            r                       
-                                U1,5                                                                                    
-D3,2                            D1,0    P                                                       R                       
-D2,1                            P0      G12                                                                             
-                                P12     P                                                                               
-                                d2,12                                                                   r               
-                                U2,1                                                                                    
-D4,3                            D2,8                                                                    R               
-                                d0,8                                                    r                               
-D4,2                            D0,8                                                    R                               
-                                d1,8                                                            r                       
-                                U1,2                                                                                    
-D1,2    D2              N3,0    D1,5    P                               V0                      R                       
-D2,1                            P0                                      B3              B0,4                            
-...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     
-                                        G8                                                                              
-                                P8      P                                                                               
-                                d2,8                                                                    r               
-D4,2                            D2,7                                                                    R               
-                                d0,7                                                    r                               
-D4,3                            D0,6                                                    R                               
-                                d1,6                                                            r                       
-                                U1,1                                                                                    
-D4,3                            D1,5    P                                                       R                       
-D4,2                            P0      G8                                                                              
-                                P8      P                                                                               
-                                d2,8                                                                    r               
-D0,2                            D2,8                                                                    R               
-                                d0,8                                                    r                               
-D1,1                            D0,8                                                    R                               
-                                d1,8                                                            r                       
-D1,1                            D1,7    P                                                       R                       
-D3,1                            P0      G4                                                                              
-                                P4      P                                                                               
-                                d2,4                                                                    r               
-D1,2                            D2,4                                                                    R               
-                                d0,4                                                    r                               
-D4,3    D2              N4,1    D0,4                                            V1      R                               
-                                d1,4                                                            r                       
-D2,3                            D1,4                                                            R                       
-                                                                                B3              B3,4                    
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     
-D4,3                            P0      P                                                                               
-D1,2                                    G6                                                                              
-...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
-...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     
-D4,2                                                                                                                    
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     
-D1,2                                                                                                                    
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     
-D3,1                                                                                                                    
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     
-D1,1                                                                                                                    
-...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
-D4,1    D2                                                                                                              
-...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
-D0,3                                                                                                                    
-...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       
-...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
-D4,1                                                                                                                    
-F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     
+Parent  GroupoffWATOff  Names   Truck   Plant   Stud0   Stud1   Stud2   Stud3   Stud4   Mach0   Mach1   Mach2   Cour0
+******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* ******* *******
+S       S       S       S                                                               S
+D3,2            C1,5    R1      S       S       S3,2    S1,1    S2,1    S0,1    S3,1            S       S       S
+D2,2            C2,5    R2              G6
+D4,2            C4,5    N0,0                    V0                                                              t0,5
+D2,2            W               P6      P
+                                d0,6                                                    r
+                                U0,14
+D4,1                            D0,0    P                                               R
+D0,1                            P0                                                                              T0,5
+D4,3            W                       G7                                                                      t1,5
+                                P7      P
+                                d1,7                                                            r
+                                U1,13
+                        N0,1    D1,0            B3                                      B3,0
+D1,1                            P0      P       V1                                              R
+D3,2                                    G6
+                                P6      P
+                                d2,6                                                                    r
+                                U2,14
+                                D2,0            B1                                              B3,0
+...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...
+D2,3    D2              N1,1    P0      P               V1                                              R
+                                        G6
+                                P6      P
+                                d0,6                                                    r
+                                U0,9
+D4,1                            D0,0    P                                               R
+D0,3                            P0      G6
+                                P6      P
+                                d1,6                                                            r
+                                U1,9
+D0,2                            D1,1                                                            R
+                                d2,1                                                                    r
+                                U2,13
+D1,1                            D2,0                                                                    R       T1,5
+                                                                                                                t2,5
+D2,2            W                                                                                               T2,5
+                                                                                                                t3,5
+D0,3            W                                                                                               T3,5
+                                                                                                                t4,5
+D1,2            W               P0      P               B3                                      B1,4            T4,5
+...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...
+D4,3                                    G8
+                                P8      P
+                                d0,8                                                    r
+                                U0,2
+D2,2                            D0,1                                                    R
+                                d1,1                                                            r
+                                U1,9
+D2,2                            D1,0    P                                                       R
+D2,2    D2              N2,2    P0      G7                      V2
+                                P7      P
+                                d2,7                                                                    r
+                                U2,6
+D4,3                            D2,0                                                                    R
+                                P0      P                       B3                                      B2,1
+...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...
+D0,2                                    G6
+                                P6      P
+                                d0,6                                                    r
+                                U0,2
+D1,3                            D0,6                                                    R
+                                d1,6                                                            r
+                                U1,6
+D2,3                            D1,3                                                            R
+                                d2,3                                                                    r
+                                U2,5
+D2,1                            D2,1    P                                                               R
+D0,3                            P0      G3
+                                P3      P
+                                d0,3                                                    r
+D2,1                            D0,1                                                    R
+                                d1,1                                                            r
+                                U1,5
+D3,2                            D1,0    P                                                       R
+D2,1                            P0      G12
+                                P12     P
+                                d2,12                                                                   r
+                                U2,1
+D4,3                            D2,8                                                                    R
+                                d0,8                                                    r
+D4,2                            D0,8                                                    R
+                                d1,8                                                            r
+                                U1,2
+D1,2    D2              N3,0    D1,5    P                               V0                      R
+D2,1                            P0                                      B3              B0,4
+...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...
+                                        G8
+                                P8      P
+                                d2,8                                                                    r
+D4,2                            D2,7                                                                    R
+                                d0,7                                                    r
+D4,3                            D0,6                                                    R
+                                d1,6                                                            r
+                                U1,1
+D4,3                            D1,5    P                                                       R
+D4,2                            P0      G8
+                                P8      P
+                                d2,8                                                                    r
+D0,2                            D2,8                                                                    R
+                                d0,8                                                    r
+D1,1                            D0,8                                                    R
+                                d1,8                                                            r
+D1,1                            D1,7    P                                                       R
+D3,1                            P0      G4
+                                P4      P
+                                d2,4                                                                    r
+D1,2                            D2,4                                                                    R
+                                d0,4                                                    r
+D4,3    D2              N4,1    D0,4                                            V1      R
+                                d1,4                                                            r
+D2,3                            D1,4                                                            R
+                                                                                B3              B3,4
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...     ...
+D4,3                            P0      P
+D1,2                                    G6
+...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
+...     ...     ...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...
+D4,2
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...     ...
+D1,2
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...     ...
+D3,1
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F       ...
+D1,1
+...     ...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
+D4,1    D2
+...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
+D0,3
+...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     F
+...     ...     F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
+D4,1
+F       ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...     ...
 *******************
+
+[Analysis] The program follows the specifications. All the students got their number of sodas before they finished.
+Every task is started and finished. The truck is started after the bottling plant, as expected. The configuration
+is adhered to.
